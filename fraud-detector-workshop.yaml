@@ -133,7 +133,7 @@ Resources:
       NotebookInstanceName: !Ref NotebookName
       RoleArn: !GetAtt SageMakerIamRole.Arn
       LifecycleConfigName: !GetAtt GDALInstanceLifecycleConfig.NotebookInstanceLifecycleConfigName
-      VolumeSizeInGB: 500 
+      VolumeSizeInGB: 20 
 
 Outputs:
   NotebookInstanceId:
