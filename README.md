@@ -12,10 +12,13 @@ The repository is based https://github.com/mikames/data-and-notebooks and I've a
 
 ## Cost
 * Assumption:
-  * Training data storage cost on S3 is so tiny can be ignored. (25MB data file is stored tempoarily.)
-  * Only one model version is created with train data set - [project_1_newaccounts_100k.csv](./project_1_newaccounts_100k.csv), which takes approx. 1hr. And the model hosting time is approx. 6 hours.
-  * Approx 1,000 time of fraud predictions will be invoked.
-* Pricing: 0.39 * 1 + 0.06 * 6 + 0.03 * 1000 = ***$30.75 USD***
+  * The workshop takes approx. 8hrs.
+  * Storage cost can be ignore - in the lab, 25MB data file is stored tempoarily.
+  * Only one model version is created with train data set - [project_1_newaccounts_100k.csv](./project_1_newaccounts_100k.csv), which takes approx. 1hr. And the model hosting time is approx. 8 hours.
+  * Approx 1,000 times of fraud predictions will be invoked.
+  * 8hrs usage of t3.medium of Amazon SageMake Notebook instance
+* Estimated Cost: 0.39 * 1 + 0.06 * 8 + 0.03 * 1000 + 0.0739 * 8= *** $31.5USD ***
+  > If the workshop is being done on a new AWS account or an account without using Amazon SageMaker & Amazon Fraud Detector before, the two month free tier offering should be able to cover the cost. For more detail about free tier / free trial: [Amazon SageMaker](https://aws.amazon.com/sagemaker/pricing/) & [Amazon Fraud Detector](https://aws.amazon.com/fraud-detector/pricing/)
 
 ## Notes
 This repository contains sample notebooks and data, feel free to use as you like. 
