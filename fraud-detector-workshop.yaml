@@ -10,8 +10,8 @@ Metadata:
 Parameters: 
   NotebookName:
     Type: String
-    Default: AIMLWorkshopInstance
-    Description: Enter the name of the SageMaker Notebook instance. Default is DeepLearningSatelliteImage.
+    Default: FraudWorkshopInstance
+    Description: Enter the name of the SageMaker Notebook instance. Default is FraudWorkshopInstance.
 
 Resources: 
 # SageMaker Execution Role
@@ -35,14 +35,13 @@ Resources:
         - "arn:aws:iam::aws:policy/AmazonS3FullAccess"
         - "arn:aws:iam::aws:policy/AmazonFraudDetectorFullAccessPolicy"
 
-  GDALInstanceLifecycleConfig:
+  InstanceLifecycleConfig:
     Type: "AWS::SageMaker::NotebookInstanceLifecycleConfig"
     Properties:
       OnCreate: 
         - Content: 
             Fn::Base64: |
               #!/bin/bash
-
               set -e
 
               sudo -u ec2-user -i <<'EOF'
@@ -58,11 +57,11 @@ Resources:
       InstanceType: "ml.t3.medium"
       NotebookInstanceName: !Ref NotebookName
       RoleArn: !GetAtt SageMakerIamRole.Arn
-      LifecycleConfigName: !GetAtt GDALInstanceLifecycleConfig.NotebookInstanceLifecycleConfigName
+      LifecycleConfigName: !GetAtt InstanceLifecycleConfig.NotebookInstanceLifecycleConfigName
       VolumeSizeInGB: 20 
 
 Outputs:
   NotebookInstanceId:
     Value: !Ref NotebookInstance
   NotebookInstanceLifecycleConfigId:
-    Value: !Ref GDALInstanceLifecycleConfig
+    Value: !Ref InstanceLifecycleConfig
